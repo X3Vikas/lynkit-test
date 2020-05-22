@@ -1,0 +1,64 @@
+<div class="bg-img">
+  <div class="container">
+    <div class="row">
+      <div class="card mt-5" style="width: 22rem; margin: 0 auto;">
+        <div class="card-body">
+          <h5 class="card-title text-center">Signup</h5>
+          <form [formGroup]="signUpForm" (submit)="signUpFormSubmit()">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input formControlName="fullName" class="form-control" id="fullName">
+              <small class="text-danger" *ngIf="signUpForm.get('fullName')?.invalid && (signUpFormSubmitted || signUpForm.controls.fullName.touched) ">
+                <span *ngIf="signUpForm.controls.fullName.errors.required">Required</span>
+                <span *ngIf="signUpForm.controls.fullName.errors.minlength">min 3 char allow</span>
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input formControlName="email" class="form-control" id="email">
+              <small class="text-danger" *ngIf="signUpForm.get('email')?.invalid && (signUpFormSubmitted || signUpForm.controls.email.touched) ">
+                <span *ngIf="signUpForm.controls.email.errors.required">Required</span>
+                <span *ngIf="signUpForm.controls.email.errors.pattern && !signUpForm.controls.email.errors.required">enter valid email</span>
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="email">Mobile</label>
+              <input formControlName="phone" class="form-control" id="phone" maxlength=10>
+              <small class="text-danger" *ngIf="signUpForm.get('phone')?.invalid && (signUpFormSubmitted || signUpForm.controls.phone.touched)">
+                <span *ngIf="signUpForm.controls.phone.errors.required">Required</span>
+                <span *ngIf="signUpForm.controls.phone.errors.pattern && !signUpForm.controls.phone.errors.required">only number allow</span>
+                <span *ngIf="signUpForm.controls.phone.errors.minlength  && !signUpForm.controls.phone.errors.required && !signUpForm.controls.phone.errors.pattern">min 10 digits </span>
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="Password">Password</label>
+              <input formControlName="password" type="password" class="form-control" id="Password">
+              <small class="text-danger" *ngIf="signUpForm.get('password')?.invalid && (signUpFormSubmitted || signUpForm.controls.password.touched) ">
+                <span *ngIf="signUpForm.controls.password.errors.required">Required</span>
+                <span *ngIf="signUpForm.controls.password.errors.pattern">
+                  Password must include at least an uppercase, a number & a special character
+                </span>
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword">
+              <small class="text-danger" *ngIf="!!signUpForm.controls.confirmPassword.invalid  && (signUpFormSubmitted || !!signUpForm.controls.confirmPassword.touched)">
+                <span *ngIf="!!signUpForm.controls.confirmPassword.errors.required">Required</span>
+                <span *ngIf="!!signUpForm.controls.confirmPassword.errors.notSame">Password not same</span>
+              </small>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <a routerLink="/login" class="btn btn-primary btn-block">Back</a>
+              </div>
+              <div class="col-6">
+                <button type="submit" class="btn btn-primary btn-block">Signup</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
